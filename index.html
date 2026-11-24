@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TalentRefine HR Solutions | End-to-End HR Services</title>
+<meta name="description" content="TalentRefine HR Solutions — Your trusted partner for end-to-end HR services including recruitment, payroll, compliance, training, and HR consulting." />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ─── TOKENS ─────────────────────────────────────────────────────── */
+  :root {
+    --navy:   #1A2744;
+    --gold:   #C9963A;
+    --gold-lt:#F0C97A;
+    --cream:  #F8F5EF;
+    --white:  #FFFFFF;
+    --gray:   #6B7280;
+    --light:  #EEF0F5;
+    --accent: #2E5FA3;
+  }
+
+  /* ─── RESET ──────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); }
+  img  { max-width: 100%; display: block; }
+  a    { text-decoration: none; color: inherit; }
+
+  /* ─── NAV ────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(26,39,68,0.97); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6%; height: 68px;
+    border-bottom: 1px solid rgba(201,150,58,0.25);
+  }
+  .nav-logo { display: flex; flex-direction: column; line-height: 1.1; }
+  .nav-logo span:first-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--white); letter-spacing: 0.02em;
+  }
+  .nav-logo span:last-child {
+    font-size: 0.63rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.04em; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 0.45rem 1.2rem; border-radius: 4px; font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: var(--gold-lt) !important; color: var(--navy) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); }
+
+  /* ─── HERO ───────────────────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, #243560 55%, #1d3a7a 100%);
+    display: flex; align-items: center;
+    padding: 100px 6% 60px;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9963A' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 1;
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 700px; }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(201,150,58,0.15); border: 1px solid rgba(201,150,58,0.4);
+    color: var(--gold); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.35rem 1rem; border-radius: 3px; margin-bottom: 1.8rem;
+  }
+  #hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    color: var(--white); line-height: 1.18; margin-bottom: 1.4rem;
+  }
+  #hero h1 em { color: var(--gold); font-style: normal; }
+  #hero p {
+    font-size: 1.08rem; color: rgba(255,255,255,0.72);
+    line-height: 1.75; max-width: 560px; margin-bottom: 2.4rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 0.85rem 2rem; border-radius: 5px; font-weight: 700;
+    font-size: 0.95rem; transition: background .2s, transform .15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.4); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 5px; font-weight: 500;
+    font-size: 0.95rem; transition: border-color .2s, transform .15s;
+    cursor: pointer; background: transparent;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3.5rem; flex-wrap: wrap;
+  }
+  .stat { display: flex; flex-direction: column; }
+  .stat strong { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); }
+  .stat span { font-size: 0.8rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; margin-top: 2px; }
+
+  /* ─── SECTION BASICS ─────────────────────────────────────────────── */
+  section { padding: 90px 6%; }
+  .section-tag {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+    color: var(--navy); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--gray); line-height: 1.7; max-width: 560px;
+  }
+  .section-header { margin-bottom: 3.5rem; }
+  .divider {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+    border-radius: 2px; margin: 1rem 0 1.4rem;
+  }
+
+  /* ─── ABOUT ──────────────────────────────────────────────────────── */
+  #about { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-img-wrap {
+    position: relative;
+    background: linear-gradient(135deg, var(--navy), var(--accent));
+    border-radius: 12px; overflow: hidden;
+    aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-img-wrap svg { opacity: 0.15; }
+  .about-badge {
+    position: absolute; bottom: 1.5rem; left: 1.5rem;
+    background: var(--gold); color: var(--navy);
+    padding: 0.75rem 1.2rem; border-radius: 8px;
+    font-weight: 700; font-size: 0.85rem;
+  }
+  .about-badge span { display: block; font-size: 1.5rem; font-family: 'Playfair Display', serif; }
+  .about-text p { color: var(--gray); line-height: 1.8; margin-bottom: 1.1rem; font-size: 0.97rem; }
+  .about-values { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+  .value-item { display: flex; align-items: flex-start; gap: 0.8rem; }
+  .value-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(201,150,58,0.12); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 1rem;
+  }
+  .value-item p { font-size: 0.9rem; color: var(--navy); line-height: 1.5; }
+  .value-item strong { display: block; font-weight: 600; margin-bottom: 2px; }
+
+  /* ─── SERVICES ───────────────────────────────────────────────────── */
+  #services { background: var(--white); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card {
+    border: 1px solid #E5E7EB; border-radius: 12px; padding: 2rem 1.7rem;
+    transition: box-shadow .25s, transform .2s, border-color .2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+    transform: scaleX(0); transform-origin: left; transition: transform .3s;
+  }
+  .service-card:hover { box-shadow: 0 12px 40px rgba(26,39,68,0.1); transform: translateY(-4px); border-color: rgba(201,150,58,0.3); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .svc-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--navy), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.2rem;
+  }
+  .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--navy); }
+  .service-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.65; }
+
+  /* ─── PROCESS ────────────────────────────────────────────────────── */
+  #process { background: var(--navy); }
+  #process .section-title { color: var(--white); }
+  #process .section-sub { color: rgba(255,255,255,0.6); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3.5rem; position: relative; }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 30px; left: 10%; right: 10%; height: 1px;
+    background: rgba(201,150,58,0.3); z-index: 0;
+  }
+  .step { text-align: center; position: relative; z-index: 1; padding: 0 0.5rem; }
+  .step-num {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--navy); border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold);
+    margin: 0 auto 1.2rem;
+  }
+  .step h4 { color: var(--white); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .step p { color: rgba(255,255,255,0.5); font-size: 0.82rem; line-height: 1.6; }
+
+  /* ─── WHY US ─────────────────────────────────────────────────────── */
+  #why { background: var(--cream); }
+  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  .why-card {
+    background: var(--white); border-radius: 10px; padding: 1.8rem;
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    border: 1px solid #E5E7EB;
+    transition: box-shadow .2s;
+  }
+  .why-card:hover { box-shadow: 0 6px 24px rgba(26,39,68,0.08); }
+  .why-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .why-card h4 { font-weight: 700; margin-bottom: 0.35rem; font-size: 0.97rem; }
+  .why-card p { font-size: 0.86rem; color: var(--gray); line-height: 1.6; }
+
+  /* ─── INDUSTRIES ─────────────────────────────────────────────────── */
+  #industries { background: var(--white); }
+  .industries-wrap { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2.5rem; }
+  .industry-pill {
+    background: var(--light); border: 1px solid #D1D5DB;
+    border-radius: 50px; padding: 0.55rem 1.3rem;
+    font-size: 0.88rem; font-weight: 500; color: var(--navy);
+    transition: background .2s, border-color .2s, color .2s;
+    cursor: default;
+  }
+  .industry-pill:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+  /* ─── CONTACT ────────────────────────────────────────────────────── */
+  #contact { background: var(--navy); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-sub { color: rgba(255,255,255,0.6); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-item-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(201,150,58,0.15); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-item h5 { color: rgba(255,255,255,0.5); font-size: 0.75rem; font-weight: 500; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .contact-item p { color: var(--white); font-size: 0.95rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 7px; padding: 0.8rem 1rem; color: var(--white);
+    font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    transition: border-color .2s; outline: none; width: 100%;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .contact-form select option { background: var(--navy); }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus { border-color: var(--gold); background: rgba(255,255,255,0.1); }
+  .contact-form textarea { min-height: 110px; resize: vertical; }
+  .contact-form .btn-primary { width: 100%; border: none; font-family: 'Inter', sans-serif; font-size: 1rem; }
+
+  /* ─── FOOTER ─────────────────────────────────────────────────────── */
+  footer {
+    background: #101828; color: rgba(255,255,255,0.55);
+    padding: 2rem 6%; display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem; font-size: 0.83rem;
+  }
+  footer strong { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 0.95rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); transition: color .2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── ANIMATIONS ─────────────────────────────────────────────────── */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ─── MOBILE ─────────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-steps::before { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .why-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column; gap: 1.2rem;
+      position: fixed; top: 68px; left: 0; right: 0;
+      background: var(--navy); padding: 2rem 6%;
+    }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    section { padding: 60px 5%; }
+    .hero-stats { gap: 1.5rem; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">
+    <span>TalentRefine</span>
+    <span>HR Solutions</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">End-to-End HR Partner</div>
+    <h1>Building <em>People-First</em><br/>Organisations</h1>
+    <p>TalentRefine HR Solutions delivers comprehensive HR services — from talent acquisition and payroll to compliance and training — so you can focus on growing your business.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get a Free Consultation</a>
+      <a href="#services" class="btn-outline">Explore Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong id="stat1">0</strong><span>Clients Served</span></div>
+      <div class="stat"><strong id="stat2">0</strong><span>Placements Made</span></div>
+      <div class="stat"><strong id="stat3">0</strong><span>Years of Expertise</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <svg width="220" height="220" viewBox="0 0 220 220" fill="none">
+        <circle cx="110" cy="110" r="90" stroke="white" stroke-width="2"/>
+        <circle cx="110" cy="80" r="32" fill="white"/>
+        <ellipse cx="110" cy="165" rx="55" ry="34" fill="white"/>
+        <circle cx="60" cy="100" r="22" fill="white"/>
+        <ellipse cx="60" cy="145" rx="38" ry="24" fill="white"/>
+        <circle cx="160" cy="100" r="22" fill="white"/>
+        <ellipse cx="160" cy="145" rx="38" ry="24" fill="white"/>
+      </svg>
+      <div class="about-badge"><span>6+</span>Years of Excellence</div>
+    </div>
+    <div class="about-text">
+      <span class="section-tag">About Us</span>
+      <h2 class="section-title">Your Dedicated HR Partner</h2>
+      <div class="divider"></div>
+      <p>TalentRefine HR Solutions was founded with a clear purpose: to give businesses of every size access to expert HR support without the overhead of a full in-house team.</p>
+      <p>We partner with startups, SMEs, and enterprises across India — handling the full employee lifecycle, from the first interview to retirement, with precision and care.</p>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <p><strong>People-First Philosophy</strong>Every solution we build starts with understanding your people and culture.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <p><strong>Compliance-Driven</strong>We stay current with labour laws so you never face regulatory surprises.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <p><strong>Scalable Solutions</strong>From 5-person teams to 500+, our services scale with your growth.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ─────────────────────────────────────────────────────── -->
+<section id="services">
+  <div class="section-header">
+    <span class="section-tag">What We Do</span>
+    <h2 class="section-title">End-to-End HR Services</h2>
+    <div class="divider"></div>
+    <p class="section-sub">From hiring your first employee to managing a full workforce — we handle every piece of the HR puzzle.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="svc-icon">🎯</div>
+      <h3>Talent Acquisition & Recruitment</h3>
+      <p>End-to-end hiring support — job analysis, sourcing, screening, interviewing, and onboarding for all levels and functions.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="svc-icon">💰</div>
+      <h3>Payroll Processing</h3>
+      <p>Accurate, on-time payroll with full statutory compliance — PF, ESI, TDS, PT — with detailed payslips and MIS reports.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="svc-icon">📋</div>
+      <h3>HR Compliance & Labour Law</h3>
+      <p>Stay audit-ready with expert guidance on PF, ESI, Shops & Establishments, Factories Act, and all applicable labour regulations.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="svc-icon">📈</div>
+      <h3>Performance Management</h3>
+      <p>Design and implement KRA/KPI frameworks, appraisal cycles, and feedback systems that drive employee performance.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="svc-icon">🎓</div>
+      <h3>Training & Development</h3>
+      <p>Customised learning programmes — leadership development, soft skills, compliance training, and new-hire orientation.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="svc-icon">📄</div>
+      <h3>HR Policy & Documentation</h3>
+      <p>Drafting and reviewing employee handbooks, offer letters, appointment orders, NDAs, and complete HR policy manuals.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="svc-icon">🤝</div>
+      <h3>Employee Relations</h3>
+      <p>Grievance handling, disciplinary processes, POSH compliance, and building a healthy, engaged workplace culture.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="svc-icon">🏢</div>
+      <h3>HR Outsourcing (HRO)</h3>
+      <p>Complete outsourced HR department for SMEs — we act as your HR team, available on a retainer or project basis.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="svc-icon">🔍</div>
+      <h3>Background Verification</h3>
+      <p>Thorough pre-employment verification — education, employment history, criminal records, and reference checks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ────────────────────────────────────────────────────────── -->
+<section id="process">
+  <div class="section-header">
+    <span class="section-tag">How We Work</span>
+    <h2 class="section-title">Simple, Structured, Effective</h2>
+    <div class="divider"></div>
+    <p class="section-sub" style="color:rgba(255,255,255,0.6)">From first conversation to ongoing support — here's what working with us looks like.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step fade-up">
+      <div class="step-num">1</div>
+      <h4>Discovery Call</h4>
+      <p>We listen to your challenges, goals, and current HR setup to understand exactly what you need.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">2</div>
+      <h4>Custom Proposal</h4>
+      <p>We design a tailored HR plan with clear scope, timelines, and pricing — no hidden surprises.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">3</div>
+      <h4>Seamless Onboarding</h4>
+      <p>Our team integrates with yours quickly, with minimal disruption to your ongoing operations.</p>
+    </div>
+    <div class="step fade-up">
+      <div class="step-num">4</div>
+      <h4>Ongoing Support</h4>
+      <p>Regular reviews, MIS reporting, and a dedicated HR point of contact at every step.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ──────────────────────────────────────────────────────────── -->
+<section id="why">
+  <div class="section-header">
+    <span class="section-tag">Why TalentRefine</span>
+    <h2 class="section-title">The TalentRefine Advantage</h2>
+    <div class="divider"></div>
+    <p class="section-sub">What sets us apart from generic HR agencies.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card fade-up"><div class="why-icon">⚡</div><div><h4>Fast Turnaround</h4><p>Recruitment mandates actioned within 24–48 hours. Payroll processed on the dot, every cycle.</p></div></div>
+    <div class="why-card fade-up"><div class="why-icon">🔒</div><div><h4>100% Confidentiality</h4><p>Your employee data and business information are protected with strict data security protocols.</p></div></div>
+    <div class="why-card fade-up"><div class="why-icon">🧩</div><div><h4>Customised to Your Business</h4><p>No one-size-fits-all packages. Every solution is built around your specific industry and culture.</p></div></div>
+    <div class="why-card fade-up"><div class="why-icon">📊</div><div><h4>Data-Driven Insights</h4><p>Monthly MIS dashboards, attrition analytics, and hiring metrics to help you make smarter decisions.</p></div></div>
+    <div class="why-card fade-up"><div class="why-icon">🌐</div><div><h4>Pan-India Capability</h4><p>We serve clients across Bengaluru, Hyderabad, Mumbai, Delhi, and other major metros.</p></div></div>
+    <div class="why-card fade-up"><div class="why-icon">💬</div><div><h4>Dedicated HR Manager</h4><p>Every client gets a single point of contact — a dedicated HR professional who knows your business.</p></div></div>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ─────────────────────────────────────────────────────── -->
+<section id="industries">
+  <div class="section-header">
+    <span class="section-tag">Sectors We Serve</span>
+    <h2 class="section-title">Industries We Specialise In</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Deep domain knowledge across sectors means we understand your workforce challenges inside out.</p>
+  </div>
+  <div class="industries-wrap">
+    <span class="industry-pill">💻 Information Technology</span>
+    <span class="industry-pill">🏦 Banking & Finance</span>
+    <span class="industry-pill">🏥 Healthcare & Pharma</span>
+    <span class="industry-pill">🏭 Manufacturing</span>
+    <span class="industry-pill">🏪 Retail & FMCG</span>
+    <span class="industry-pill">🎓 Education & EdTech</span>
+    <span class="industry-pill">🏗️ Construction & Real Estate</span>
+    <span class="industry-pill">🚀 Startups</span>
+    <span class="industry-pill">✈️ Travel & Hospitality</span>
+    <span class="industry-pill">📦 Logistics & Supply Chain</span>
+    <span class="industry-pill">📡 Telecom & BPO</span>
+    <span class="industry-pill">🎨 Media & Creative</span>
+  </div>
+</section>
+
+<!-- ── CONTACT ─────────────────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag">Get In Touch</span>
+    <h2 class="section-title">Let's Talk HR</h2>
+    <div class="divider"></div>
+    <p class="section-sub" style="color:rgba(255,255,255,0.6)">Tell us about your requirement and we'll get back within one business day.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <!-- ✏️ UPDATE YOUR CONTACT DETAILS BELOW -->
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div><h5>Phone</h5><p>+91 9731522672</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div><h5>Email</h5><p>info@talentrefinehr.com</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div><h5>Location</h5><p>Bengaluru, Karnataka, India</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <div><h5>Working Hours</h5><p>Mon – Sat, 9:00 AM – 6:30 PM</p></div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name" required />
+        <input type="text" placeholder="Company Name" />
+      </div>
+      <div class="form-row">
+        <input type="email" placeholder="Email Address" required />
+        <input type="tel" placeholder="Phone Number" />
+      </div>
+      <select>
+        <option value="" disabled selected>Service Required</option>
+        <option>Talent Acquisition & Recruitment</option>
+        <option>Payroll Processing</option>
+        <option>HR Compliance</option>
+        <option>Performance Management</option>
+        <option>Training & Development</option>
+        <option>HR Outsourcing</option>
+        <option>Background Verification</option>
+        <option>Other</option>
+      </select>
+      <textarea placeholder="Tell us about your requirement…"></textarea>
+      <button type="submit" class="btn-primary">Send Message →</button>
+      <p id="formMsg" style="text-align:center;color:var(--gold-lt);font-size:0.88rem;display:none;">
+        ✓ Message received! We'll be in touch within one business day.
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
+<footer>
+  <div>
+    <strong>TalentRefine HR Solutions</strong><br/>
+    <span>© 2020 All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<!-- ── SCRIPTS ─────────────────────────────────────────────────────────── -->
+<script>
+  // Counter animation
+  function animateCount(el, target, suffix='') {
+    let start = 0; const duration = 1800;
+    const step = timestamp => {
+      if (!start) start = timestamp;
+      const prog = Math.min((timestamp - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - prog, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (prog < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  // Intersection observer for fade-ups + stats
+  let statsRun = false;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // Hero stats counter trigger
+  const heroStatObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !statsRun) {
+      statsRun = true;
+      // ✏️ UPDATE THESE NUMBERS to match your real stats
+      animateCount(document.getElementById('stat1'), 50, '+');
+      animateCount(document.getElementById('stat2'), 500, '+');
+      animateCount(document.getElementById('stat3'), 6,   '+');
+    }
+  }, { threshold: 0.3 });
+  heroStatObs.observe(document.getElementById('hero'));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('formMsg').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => document.getElementById('formMsg').style.display = 'none', 6000);
+  }
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
