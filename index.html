@@ -70,7 +70,24 @@
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9963A' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     opacity: 1;
   }
-  .hero-inner { position: relative; z-index: 1; max-width: 700px; }
+  .hero-inner {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+  .hero-content { flex: 1 1 560px; max-width: 660px; min-width: 0; }
+  .hero-visual {
+    flex: 0 1 clamp(220px, 30vw, 380px);
+    display: flex; align-items: center; justify-content: center;
+    min-width: 0;
+  }
+  .hero-logo {
+    width: 100%;
+    max-width: clamp(190px, 28vw, 360px);
+    height: auto;
+    object-fit: contain;
+  }
   .hero-eyebrow {
     display: inline-block;
     background: rgba(201,150,58,0.15); border: 1px solid rgba(201,150,58,0.4);
@@ -283,6 +300,10 @@
 
   /* ─── MOBILE ─────────────────────────────────────────────────────── */
   @media (max-width: 900px) {
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 2.5rem; }
+    .hero-content { flex: none; width: 100%; max-width: 100%; }
+    .hero-visual { flex: none; width: 100%; justify-content: center; }
+    .hero-logo { max-width: clamp(160px, 45vw, 240px); }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .process-steps { grid-template-columns: repeat(2, 1fr); }
@@ -298,6 +319,7 @@
     .hamburger { display: flex; }
   }
   @media (max-width: 600px) {
+    .hero-logo { max-width: clamp(140px, 52vw, 200px); }
     .services-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .process-steps { grid-template-columns: 1fr; }
@@ -332,17 +354,26 @@
 <!-- ── HERO ─────────────────────────────────────────────────────────── -->
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">End-to-End HR Partner</div>
-    <h1>Building <em>People-First</em><br/>Organisations</h1>
-    <p>TalentRefine HR Solutions delivers comprehensive HR services — from talent acquisition and payroll to compliance and training — so you can focus on growing your business.</p>
-    <div class="hero-btns">
-      <a href="#contact" class="btn-primary">Get a Free Consultation</a>
-      <a href="#services" class="btn-outline">Explore Services</a>
+    <div class="hero-content">
+      <div class="hero-eyebrow">End-to-End HR Partner</div>
+      <h1>Building <em>People-First</em><br/>Organisations</h1>
+      <p>TalentRefine HR Solutions delivers comprehensive HR services — from talent acquisition and payroll to compliance and training — so you can focus on growing your business.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get a Free Consultation</a>
+        <a href="#services" class="btn-outline">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong id="stat1">0</strong><span>Clients Served</span></div>
+        <div class="stat"><strong id="stat2">0</strong><span>Placements Made</span></div>
+        <div class="stat"><strong id="stat3">0</strong><span>Years of Expertise</span></div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><strong id="stat1">0</strong><span>Clients Served</span></div>
-      <div class="stat"><strong id="stat2">0</strong><span>Placements Made</span></div>
-      <div class="stat"><strong id="stat3">0</strong><span>Years of Expertise</span></div>
+    <div class="hero-visual">
+      <img
+        src="talentrefine-logo.png.png"
+        alt="TalentRefine HR Solutions Logo"
+        class="hero-logo"
+      />
     </div>
   </div>
 </section>
@@ -534,7 +565,7 @@
       </div>
       <div class="contact-item">
         <div class="contact-item-icon">✉️</div>
-        <div><h5>Email</h5><p>info@talentrefinehr.com</p></div>
+        <div><h5>Email</h5><p>support@talentrefinehr.com</p></div>
       </div>
       <div class="contact-item">
         <div class="contact-item-icon">📍</div>
